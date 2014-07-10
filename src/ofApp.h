@@ -1,31 +1,31 @@
 #pragma once
 
 #include "ofMain.h"
-#include "ofxiOS.h"
-#include "ofxiOSExtras.h"
-
-//#import <AVFoundation/AVFoundation.h>
+#include "AppCore.h"
 
 
-class ofApp : public ofxiOSApp{
+class ofApp : public ofBaseApp{
     
 public:
     void setup();
     void update();
     void draw();
     void exit();
+
     
-    void touchDown(ofTouchEventArgs & touch);
-    void touchMoved(ofTouchEventArgs & touch);
-    void touchUp(ofTouchEventArgs & touch);
-    void touchDoubleTap(ofTouchEventArgs & touch);
-    void touchCancelled(ofTouchEventArgs & touch);
-    
-    void lostFocus();
-    void gotFocus();
-    void gotMemoryWarning();
-    void deviceOrientationChanged(int newOrientation);
-    
+    void keyPressed(int key);
+    void keyReleased(int key);
+    void mouseMoved(int x, int y);
+    void mouseDragged(int x, int y, int button);
+    void mousePressed(int x, int y, int button);
+    void mouseReleased(int x, int y, int button);
+    void windowResized(int w, int h);
+    void dragEvent(ofDragInfo dragInfo);
+    void gotMessage(ofMessage msg);
+
+    void audioReceived(float * input, int bufferSize, int nChannels);
+    void audioRequested(float * output, int bufferSize, int nChannels);
+
     
     ofMesh mesh;
     
@@ -41,12 +41,11 @@ public:
     
     float zSize;
     
-    
     // Audio Beispiele kommt von "audioInputExample"
     int bufferSize;
-    void audioIn(float * input, int bufferSize, int nChannels);
+//    void audioIn(float * input, int bufferSize, int nChannels);
     
-    vector <float> left;
+    vector <float> inputBuffer;
     vector <float> right;
     vector <float> volHistory;
     
@@ -56,12 +55,16 @@ public:
     float smoothedVol;
     float scaledVol;
     
-//    ofSoundStream soundStream;
-	int	initialBufferSize;
-	int	sampleRate;
+    //    ofSoundStream soundStream;
+    int	initialBufferSize;
+    int	sampleRate;
     float * buffer;
-
+    int volNumHeight;
     
+    
+    // ofxPD
+    AppCore core;
+
 };
 
 
