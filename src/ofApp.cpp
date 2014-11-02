@@ -1,5 +1,4 @@
 #include "ofApp.h"
-#include <Poco/Path.h>
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -32,10 +31,6 @@ void ofApp::setup(){
     
     ofSoundStreamSetup(2, 1, this, sampleRate, initialBufferSize, 1);
     
-    // ofxPD
-    int ticksPerBuffer = 8; // 8 * 64 = buffer len of 512
-    int numInputs = 1;
-    core.setup(2, numInputs, sampleRate, ticksPerBuffer);
     
     mesh.setMode(OF_PRIMITIVE_TRIANGLES);
     
@@ -93,8 +88,6 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    
-    core.update();
     
     scaledVol = ofMap(smoothedVol, 0.0, 0.17, 0.0, 15.0, true);
     volHistory.push_back( scaledVol );
@@ -192,7 +185,7 @@ void ofApp::draw(){
 
 //--------------------------------------------------------------
 void ofApp::exit() {
-    core.exit();
+
 }
 
 
@@ -237,12 +230,11 @@ void ofApp::audioReceived(float * input, int bufferSize, int nChannels) {
     
     bufferCounter++;
     
-    core.audioReceived(input, bufferSize, nChannels);
 }
 
 //--------------------------------------------------------------
 void ofApp::audioRequested(float * output, int bufferSize, int nChannels) {
-    core.audioRequested(output, bufferSize, nChannels);
+
 }
 
 

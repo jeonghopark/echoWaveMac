@@ -1,8 +1,6 @@
 #pragma once
 
 #include "ofMain.h"
-#include "AppCore.h"
-
 
 class ofApp : public ofBaseApp{
     
@@ -62,8 +60,6 @@ public:
     int volNumHeight;
     
     
-    // ofxPD
-    AppCore core;
 
 };
 
