@@ -3,10 +3,12 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
+    
     ofSetFrameRate(60);
     ofBackground(10, 255);
     ofSetDepthTest(true);
     
+
     inputBuffer.clear();
     volHistory.clear();
     volNumHeight = 256;
@@ -28,15 +30,14 @@ void ofApp::setup(){
     volHistory.push_back( scaledVol );
     
     
-    
-    ofSoundStreamSetup(2, 1, this, sampleRate, initialBufferSize, 1);
-    
+    ofSoundStreamSetup(2, 1, this, sampleRate, initialBufferSize, 4);
+
     
     mesh.setMode(OF_PRIMITIVE_TRIANGLES);
     
     numWidth = 256 * 1;
     numHeight = 512 * 0.3;
-    vertexSpacing = 7;
+    vertexSpacing = 4;
     
     plateWidth = (numWidth-1) * vertexSpacing;
     plateHeight = (numHeight-1) * vertexSpacing;
@@ -83,7 +84,8 @@ void ofApp::setup(){
     
     cam.setupPerspective();
     
-    
+
+   
 }
 
 //--------------------------------------------------------------
@@ -152,7 +154,7 @@ void ofApp::draw(){
     //    mesh.drawWireframe();
     
 
-    for (int j=0; j<numHeight; j+=3) {
+    for (int j=0; j<numHeight; j+=2) {
         for (int i=0; i<numWidth; i+=2) {
             int _index = i + j * numWidth;
             ofPushMatrix();
