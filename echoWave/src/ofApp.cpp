@@ -30,7 +30,6 @@ void ofApp::setup(){
     volHistory.push_back( scaledVol );
     
     
-    ofSoundStreamSetup(2, 1, this, sampleRate, initialBufferSize, 4);
 
     
     mesh.setMode(OF_PRIMITIVE_TRIANGLES);
@@ -84,6 +83,8 @@ void ofApp::setup(){
     
     cam.setupPerspective();
     
+
+    ofSoundStreamSetup(2, 1, this, sampleRate, initialBufferSize, 4);
 
    
 }
@@ -188,6 +189,8 @@ void ofApp::draw(){
 //--------------------------------------------------------------
 void ofApp::exit() {
 
+    std::exit(0);
+    
 }
 
 
